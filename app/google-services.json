@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "400494065719",
+    "project_id": "im302002",
+    "storage_bucket": "im302002.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400494065719:android:dc51284db127a4c219e7b2",
+        "android_client_info": {
+          "package_name": "com.example.projecgestionevenements"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJwG71cbRQ6eerwOXPRCkaXGAKmGF4E6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
