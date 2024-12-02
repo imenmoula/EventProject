@@ -41,7 +41,11 @@
 
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeFragment"
             android:exported="true" />
+
 
         <!-- Suppression de l'activité white_background si non nécessaire -->
     </application>

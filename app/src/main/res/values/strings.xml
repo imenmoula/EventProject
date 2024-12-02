@@ -2,5 +2,7 @@
     <string name="app_name">Projecgestionevenements</string>
     <string name="open_nav">Ouvrir le menu</string>
     <string name="close_nav">Fermer le menu</string>
+    <string name="event_image">Event Image</string>
+
 
 </resources>

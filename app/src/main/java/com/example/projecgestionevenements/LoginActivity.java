@@ -1,15 +1,14 @@
 package com.example.projecgestionevenements;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -18,8 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -42,9 +39,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!validateUsername() | !validatePassword()) {
-
+                    // If validation fails, do nothing
                 } else {
-                    checkUser();
+                    checkUser(); // Proceed to check the user credentials in Firebase
                 }
             }
         });
@@ -56,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     public Boolean validateUsername() {
@@ -81,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-
     public void checkUser() {
         String userUsername = loginUsername.getText().toString().trim();
         String userPassword = loginPassword.getText().toString().trim();
@@ -94,18 +89,19 @@ public class LoginActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.exists()) {
-
                     loginUsername.setError(null);
                     String passwordFromDB = snapshot.child(userUsername).child("password").getValue(String.class);
 
                     if (passwordFromDB.equals(userPassword)) {
                         loginUsername.setError(null);
 
+                        // Show success Toast
+                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
                         // If credentials are correct, navigate to MainActivity
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
-                        // Optional: You can pass additional data to MainActivity if needed
-                        // For example, passing the user's name, email, etc.
+                        // Pass user data to MainActivity if needed
                         String nameFromDB = snapshot.child(userUsername).child("name").getValue(String.class);
                         String emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
                         String usernameFromDB = snapshot.child(userUsername).child("username").getValue(String.class);
@@ -119,18 +115,19 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         loginPassword.setError("Invalid Credentials");
                         loginPassword.requestFocus();
+                        Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     loginUsername.setError("User does not exist");
                     loginUsername.requestFocus();
+                    Toast.makeText(LoginActivity.this, "User does not exist", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Handle database errors here
             }
         });
-
-
-    }}
+    }
+}
