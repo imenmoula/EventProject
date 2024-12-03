@@ -48,6 +48,7 @@ public class HomeFragment extends Fragment {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Event event = document.toObject(Event.class);
                             eventList.add(event);
+                            Log.d("Firestore", "Event: " + event.getTitle());
                         }
                         eventAdapter.notifyDataSetChanged();
                     } else {
@@ -55,4 +56,5 @@ public class HomeFragment extends Fragment {
                     }
                 });
     }
+
 }
